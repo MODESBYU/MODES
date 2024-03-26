@@ -3,7 +3,7 @@ This folder is a collection of MATLAB scripts/functions that run a model of a li
 The most important scripts from the original files are 'RunSimulation.m' and 'inputs.m'. These are the two that the user interacts with, as for the most part the other files are functions that those two files call. You can also change some of the information within the 'plotResults.m' file; changing these is largely cosmetic and will only change what graphs are produced by the program. Below is a basic description of how to use each file (and therefore the whole simulation system as a whole).
 
 'inputs.m'
-    \n\tThis file is where you change your parameters. Parameters I commonly changed were the cell geometries (i.e. electrolyte gap, cross-sectional area), battery chemistry (i.e. initial concentration), and simulation parameters (i.e. user current load, time). 
+    This file is where you change your parameters. Parameters I commonly changed were the cell geometries (i.e. electrolyte gap, cross-sectional area), battery chemistry (i.e. initial concentration), and simulation parameters (i.e. user current load, time). 
 
 'RunSimulation.m'
     This file is the one you execute. Once you adjust your parameters (see 'inputs.m' section above) and save the 'inputs.m' file, run this file to run the simulation and see the results, typically expressed through plots (see 'plotResults.m' section below)
