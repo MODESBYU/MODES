@@ -1,0 +1,24 @@
+clear; close all; clc;
+
+%% pull in the data to be matched
+load("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main\Results\solver_test.mat");
+
+%% Set up the values to be used by the solver
+% initialize the guess values/starting values
+x0 = [.5,.3];
+
+% initialize the boundaries for each of the functions
+lb = [.1,.1];
+ub = [1,1];
+
+%% potentially create the function for real this time
+function f = msqe_data(x)
+    f = msqe(x,C_Liion);
+end
+
+%% separate function to bring in the concentration data
+%msqe_data = @(x) msqe(x, C_Liion);
+
+%% Solver, output
+% call fmincon to minimize the function, with constraints
+[xstar,fstar] = fmincon(@msqe_data,x0,[],[],[],[],lb,ub)
