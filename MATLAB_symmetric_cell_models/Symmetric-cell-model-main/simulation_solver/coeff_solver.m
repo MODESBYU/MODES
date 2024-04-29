@@ -4,6 +4,7 @@ addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/Calc
 addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/ParameterFunctions")
 
 %% pull in the data to be matched
+% change this to match the path of the data of interest
 file_to_load = "C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main\Results\test.mat";
 load(file_to_load);
 
