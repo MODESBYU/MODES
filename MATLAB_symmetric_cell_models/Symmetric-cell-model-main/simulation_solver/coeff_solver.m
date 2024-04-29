@@ -1,11 +1,28 @@
 clear; close all; clc;
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main")
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/CalculationFunctions")
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/ParameterFunctions")
 
-%% pull in the data to be matched
+%% Generalized path setup
+
+% find working path
+[filepath,~,~] = fileparts(mfilename('fullpath'));
+cd(filepath)
+
+% find parent path
+parentDir = fileparts(filepath);
+
+%% load the necessary paths
+
+addpath(genpath(parentDir))
+
+parentPathCalc = [parentDir filesep 'CalculationFunctions'];
+addpath(genpath(parentPathCalc))
+
+parentPathParams = [parentDir filesep 'ParameterFunctions'];
+addpath(genpath(parentPathParams))
+
+
+%% load the data to be matched
 % change this to match the path of the data of interest
-file_to_load = "C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main\Results\test.mat";
+file_to_load = [parentDir filesep 'Results' filesep 'test.mat'];
 load(file_to_load);
 
 %% Set up the values to be used by the solver
@@ -27,10 +44,17 @@ ub = [33.879,0.4991];
 
 fprintf('D_o: %f, t+: %d\n', xstar(1), xstar(2));
 
+%% Path for saving the graphs
+saveGraph_loc = [filepath filesep 'Results'];
+
 %% Try plotting the two graphs, see if that will work
 
 % plot the solved data
 [Cstar,~,~] = RunSim_solver(xstar,1);
+
+% save the plot
+fit_data = [filepath filesep 'Results' filesep 'fit_data.jpg'];
+saveas(gcf,fit_data)
 
 %% Plot the original data
 % Time Vector
@@ -58,8 +82,12 @@ for i = 1:N_times
         set(gca,"FontSize",30)
         ylim([1 1.45])
         %0.05);
-    exportgraphics(gcf,'testAnimated.gif','Append',true);
+    % exportgraphics(gcf,'testAnimated.gif','Append',true);
 end
+
+% plot the data
+real_data = [filepath filesep 'Results' filesep 'real_data.jpg'];
+saveas(gcf,real_data)
 
 %% Plot a heatmap showing error
 
@@ -117,6 +145,10 @@ title('Heatmap of Errors between Experimental and Model Data');
 xlabel('Position (mm)');
 ylabel('Time (min)');
 
+% plot the data
+heat_map = [filepath filesep 'Results' filesep 'heat_map.jpg'];
+saveas(gcf,heat_map)
+
 %% 3D plots: concentration, error
 ex = GEO.x_vec;
 tee = t_soln;
@@ -126,6 +158,7 @@ disp(tee)
 
 [X,T] = meshgrid(ex,tee);
 
+% plot the real data
 figure
 surfc(X * 1000,T / 60,adjusted_data)
 title 'real data'
@@ -135,6 +168,11 @@ zlabel 'concentration (M)'
 colorbar
 shading interp
 
+% save plot
+real_3d = [filepath filesep 'Results' filesep 'real_3d.jpg'];
+saveas(gcf,real_3d)
+
+% plot the fit data
 figure
 surfc(X * 1000,T / 60,Cstar)
 title 'modeled data'
@@ -144,6 +182,11 @@ zlabel 'concentration (M)'
 colorbar
 shading interp
 
+% save plot
+modeled_3d = [filepath filesep 'Results' filesep 'modeled_3d.jpg'];
+saveas(gcf,modeled_3d)
+
+% plot the error between the two
 figure
 surfc(X * 1000,T / 60,difference)
 title 'difference in concentration between model and data'
@@ -153,6 +196,11 @@ zlabel 'difference in concentration (M)'
 colorbar
 colormap autumn
 shading interp
+
+% save plot
+error_3d = [filepath filesep 'Results' filesep 'error_3d.jpg'];
+saveas(gcf,error_3d)
+
 
 %% future goals
 % 
@@ -188,4 +236,4 @@ shading interp
 %       things out from the solver every time, so nothing would change...
 %
 % subplot that shows the error between changing coefficients and the solver
-%       Gaussian error function (mess up the 'perfect' data
+%       Gaussian error function (mess up the 'perfect' data): done! 

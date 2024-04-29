@@ -1,21 +1,26 @@
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main")
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/CalculationFunctions")
-addpath("C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main/ParameterFunctions")
+%% Generalized path setup
+% find working path
+[filepath,~,~] = fileparts(mfilename('fullpath'));
+cd(filepath)
+
+% find parent path
+parentDir = fileparts(filepath);
+
+%% load the necessary files
+
+addpath(genpath(parentDir))
+
+parentPathCalc = [parentDir filesep 'CalculationFunctions'];
+addpath(genpath(parentPathCalc))
+
+parentPathParams = [parentDir filesep 'ParameterFunctions'];
+addpath(genpath(parentPathParams))
+
 
 %% pull in the data to be matched
-file_to_load = "C:\Users\ethan\OneDrive\Documents\MATLAB\Symmetric-cell-model-main\Results\test.mat";
+% change this to match the path of the data of interest
+file_to_load = [parentDir filesep 'Results' filesep 'test.mat'];
 load(file_to_load);
-
-% Load the existing data from the file
-existing_data = load(file_to_load);
-
-
-%% adjust the data
-% Example usage:
-adjusted_data = adjustData(C_Liion);
-display(C_Liion)
-disp('Adjusted Data:');
-disp(adjusted_data);
 
 %% Test the adjusted data 
 ex = GEO.x_vec;
