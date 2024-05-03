@@ -192,3 +192,6 @@ class Diagnostic:
         plt.ylabel('Absorbance')
         plt.legend()
         plt.show()
+
+    def get_spectra_array(self):
+        return self.spectra
