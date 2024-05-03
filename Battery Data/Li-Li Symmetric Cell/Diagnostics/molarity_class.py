@@ -6,7 +6,7 @@ from spectrum_class import Spectrum
 class Molarity:
     
     # Constructor method (optional)
-    def __init__(self, filepath, sep0,M):
+    def __init__(self, filepath = None, array = None, sep0 = None,M = None):
         """
         Initialize this class by giving it an array of paths to the spectra to be averaged;
         You also need to tell it what type of separater to use
@@ -17,13 +17,32 @@ class Molarity:
             plot
             plot_all
         """
-        self.n = len(filepath)
 
-        # fill array with spectra
-        self.spectra = np.array([])
-        for i in range(self.n):
-            a = Spectrum(filepath[i],sep0)
-            self.spectra = np.append(self.spectra,a)
+        if filepath is not None:
+            if not str(filepath).endswith('.spa'):
+                self.load_from_file(filepath,sep0)
+                self.n = len(filepath)
+
+                # fill array with spectra
+                self.spectra = np.array([])
+                for i in range(self.n):
+                    a = Spectrum(filepath[i],sep0)
+                    self.spectra = np.append(self.spectra,a)
+            else:
+                self.n = len(filepath)
+
+                # fill array with spectra
+                self.spectra = np.array([])
+                for i in range(self.n):
+                    a = Spectrum(filepath[i],spa = True)
+                    self.spectra = np.append(self.spectra,a)
+        elif array is not None:
+            self.spectra = array
+        else:
+            raise ValueError("Either 'path array' or 'Spectrum array' must be provided.")
+        
+
+        
 
         # average the array
         x_ave = 0

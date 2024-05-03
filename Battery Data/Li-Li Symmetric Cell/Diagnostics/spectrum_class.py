@@ -1,11 +1,15 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import spectrochempy as ch
 
 class Spectrum:
-    def __init__(self, filepath=None, sep0 = None, xdata=None, ydata = None):
+    def __init__(self, filepath=None, sep0 = None, xdata=None, ydata = None,spa = False):
         if filepath is not None:
-            self.load_from_file(filepath,sep0)
+            if not spa:
+                self.load_from_file(filepath,sep0)
+            else:
+                self.load_from_spa(filepath)
         elif xdata is not None:
             self.load_from_data(xdata,ydata)
         else:
@@ -17,6 +21,13 @@ class Spectrum:
         df = pd.read_csv(filepath, sep = sep0)
         self.x = df['X']
         self.y = df['Y']
+
+    def load_from_spa(self, filepath):
+        # Load spectrum data from file
+        # Your implementation to load from file
+        self.spa_object = ch.read(filepath)
+        self.x = self.spa_object.x.values
+        self.y = self.spa_object.values[0,:]
 
     def load_from_data(self, xdata,ydata):
         # Load spectrum data from pandas array
