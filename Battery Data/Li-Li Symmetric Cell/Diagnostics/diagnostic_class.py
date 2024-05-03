@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from spectrum_class import Spectrum
 from molarity_class import Molarity
+from sklearn.metrics import r2_score
 
 def closest_index(array, number):
     # Calculate the absolute difference between each array element and the given number
@@ -118,7 +119,9 @@ class Diagnostic:
             plt.ylabel(type)
             plt.legend()
         
-        return params
+        # find the r^2 value
+        r = r2_score(ydata,fit(self.molarities,params[0],params[1]))
+        return params, r
     
     def inverse(self,type = 'peak_height',loc = 1000, loc2 = None,plot = False,label0 = 'y = (a / (x + b) + c'):
         """
@@ -164,7 +167,10 @@ class Diagnostic:
             plt.xlabel('Concentration (M)')
             plt.ylabel(type)
             plt.legend()
-        return params
+
+        # find the r^2 value
+        r = r2_score(ydata,fit(self.molarities,params[0],params[1],params[2]))
+        return params,r
     
     # plotting function
     def plot(self,low = 0,high = -1):
