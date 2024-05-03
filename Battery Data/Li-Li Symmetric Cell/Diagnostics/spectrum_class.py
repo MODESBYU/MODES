@@ -25,7 +25,7 @@ class Spectrum:
     def load_from_spa(self, filepath):
         # Load spectrum data from file
         # Your implementation to load from file
-        self.spa_object = ch.read(filepath)
+        self.spa_object = ch.read_omnic(filepath)
         self.x = self.spa_object.x.values
         self.y = self.spa_object.values[0,:]
 
