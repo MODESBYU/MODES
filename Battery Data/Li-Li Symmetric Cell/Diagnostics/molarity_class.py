@@ -6,13 +6,14 @@ from spectrum_class import Spectrum
 class Molarity:
     
     # Constructor method (optional)
-    def __init__(self, filepath, sep0):
+    def __init__(self, filepath, sep0,M):
         """
         Initialize this class by giving it an array of paths to the spectra to be averaged;
         You also need to tell it what type of separater to use
         Methods are: 
             get_x
             get_y
+            get_M
             plot
             plot_all
         """
@@ -21,12 +22,21 @@ class Molarity:
         # fill array with spectra
         self.spectra = np.array([])
         for i in range(self.n):
-            a = pd.read_csv(filepath[i],sep = sep0)
+            a = Spectrum(filepath[i],sep0)
             self.spectra = np.append(self.spectra,a)
 
         # average the array
-        average = sum(self.spectra) / self.n
-        self.spectrum = Spectrum(data = average)
+        x_ave = 0
+        y_ave = 0
+        for i in self.spectra:
+            x_ave += i.get_x()
+            y_ave += i.get_y()
+        x_ave = x_ave / self.n
+        y_ave = y_ave / self.n
+        self.spectrum = Spectrum(xdata = x_ave,ydata = y_ave)
+
+        # assign class molarity
+        self.M = M
 
         
     
@@ -35,13 +45,22 @@ class Molarity:
         """
         This method returns the x values of the averaged array found in the Molarity class
         """
-        return self.spectrum.x()
+        return self.spectrum.get_x()
         
     def get_y(self):
         """
         This method returns the y values of the averaged array found in the Molarity class
         """
-        return self.spectrum.y()
+        return self.spectrum.get_y()
     
-    def plot(self,col,low = 0,high = -1):
-        self.spectrum.plot(col,low,high)
+    def get_M(self):
+        """
+        This method returns the molarity that corresponds to the averaged spectrum
+        """
+        return self.M
+    
+    def plot(self,col = None,low = 0,high = -1,label = None):
+        """
+        This method plots the averaged spectrum
+        """
+        self.spectrum.plot(col,low,high,label = label)
