@@ -102,14 +102,13 @@ class Molarity:
         """
         self.spectrum.plot(col,low,high,label = label)
 
-    def plot_all(self,col = None,low = 0,high = -1,label = None):
+    def plot_all(self,col = None,low = None,high = None,label = None):
         """
         This method plots all of the individual spectra
         """
-        plt.figure(figsize = (14,6))
         for i in self.spectra:
             i.plot(col,low,high,label,title = str(self.M) + ' M')
-        plt.show()
+        
 
     def get_all(self):
         """

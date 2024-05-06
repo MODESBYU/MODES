@@ -3,6 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import spectrochempy as ch
 
+def closest_index(array, number):
+    # Calculate the absolute difference between each array element and the given number
+    differences = [abs(x - number) for x in array]
+
+    # Find the index of the smallest difference
+    closest_index = differences.index(min(differences))
+
+    return closest_index
+
 class Spectrum:
     def __init__(self, filepath=None, sep0 = None, xdata=None, ydata = None,smooths = None):
         """
@@ -65,8 +74,10 @@ class Spectrum:
         # Method implementation
         return self.y
     
-    def plot(self,col = None,low = 0,high = -1,label = None,title = None):
-        plt.plot(self.x[low:high],self.y[low:high], color = col,label = label)
+    def plot(self,col = None,low = None,high = None,label = None,title = None):
+        # plot
+        plt.plot(self.x,self.y, color = col,label = label)
+        plt.xlim(low,high)
         plt.title(title)
         plt.xlabel(r'Wavenumbers ($cm^-1$)')
         plt.ylabel('Absorbance')
