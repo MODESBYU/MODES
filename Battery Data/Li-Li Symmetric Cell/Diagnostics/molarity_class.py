@@ -9,37 +9,34 @@ from spectrochempy import NDDataset
 class Molarity:
     
     # Constructor method (optional)
-    def __init__(self, filepath = None, array_of_Spectrum = None, obj: NDDataset = None, sep0 = None,M = None):
+    def __init__(self, filepath = None, array_of_Spectrum = None, obj: NDDataset = None, sep0 = None,M = None,smooth = None):
         """
-        Initialize this class by giving it an array of paths to the spectra to be averaged;
-        You also need to tell it what type of separater to use
+        Initialize a Molarity object by giving one of the following:
+            an array of paths to the spectra to be averaged
+            an array of Spectrum objects
+            an NDDataset object (likely with more than one spectra contained within it)
+        Other parameters you may want to add
+            sep0: tells pandas what separater to use to read a .csv file (used when you pass in an array of filepaths)
+            M: a float that tells the molarity of the Molarity object (all spectra should be for the same molarity)
+            smooth: pass a value, and the Spectrum object will assign any absorbance values greater than 'smooth' to the value of smooth
         Methods are: 
-            get_x
-            get_y
-            get_M
-            plot
-            plot_all
+            get_x:      returns x data of averaged spectrum
+            get_y:      returns y data of averaged spectrum
+            get_M:      returns the molarity of the Molarity object
+            plot:       plots the averaged spectrum
+            plot_all:   plots all of the spectra
+            get_all:    returns an array of Spectrum objects
         """
 
         if filepath is not None:
-            if not str(filepath).endswith('.spa'):
-                # initialize a normal filepath
-                self.n = len(filepath)
+            # initialize a normal filepath
+            self.n = len(filepath)
 
-                # fill array with spectra
-                self.spectra = np.array([])
-                for i in range(self.n):
-                    a = Spectrum(filepath[i],sep0)
-                    self.spectra = np.append(self.spectra,a)
-            else:
-                # initialize if it is a .spa file
-                self.n = len(filepath)
-
-                # fill array with spectra
-                self.spectra = np.array([])
-                for i in range(self.n):
-                    a = Spectrum(filepath[i],spa = True)
-                    self.spectra = np.append(self.spectra,a)
+            # fill array with spectra
+            self.spectra = np.array([])
+            for i in range(self.n):
+                a = Spectrum(filepath[i],sep0 = sep0,smooths = smooth)
+                self.spectra = np.append(self.spectra,a)
 
         elif array_of_Spectrum is not None:
             # initialize the object
@@ -55,7 +52,7 @@ class Molarity:
             spectra = []
             for i in range(self.n):
                 y_temp = ydata_full[i]
-                spectrum = Spectrum(xdata = xdata,ydata = y_temp)
+                spectrum = Spectrum(xdata = xdata,ydata = y_temp,smooths = smooth)
                 spectra.append(spectrum)
             self.spectra = spectra
 
@@ -113,3 +110,9 @@ class Molarity:
         for i in self.spectra:
             i.plot(col,low,high,label,title = str(self.M) + ' M')
         plt.show()
+
+    def get_all(self):
+        """
+        returns an array of all spectra in the Molarity object
+        """
+        return self.spectra
