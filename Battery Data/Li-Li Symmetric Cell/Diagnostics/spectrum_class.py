@@ -44,5 +44,8 @@ class Spectrum:
         # Method implementation
         return self.y
     
-    def plot(self,col = None,low = 0,high = -1,label = None):
+    def plot(self,col = None,low = 0,high = -1,label = None,title = None):
         plt.plot(self.x[low:high],self.y[low:high], color = col,label = label)
+        plt.title(title)
+        plt.xlabel(r'Wavenumbers ($cm^-1$)')
+        plt.ylabel('Absorbance')
