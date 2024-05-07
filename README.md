@@ -45,7 +45,7 @@ Alternatively, for either pulling or pushing, you can double click the files lab
 
 # Setting up the Machine Learning
 
-### Note: I made some adjustments on the Lab computer in an effort to get the machine learning algorithm to run. If you download it fresh from GitLab, you will likely have to make some code adjustments for it to run. See the bottom of this README for a list of the adjustments I made.
+### Note: I made some adjustments on the Lab computer in an effort to get the machine learning algorithm to run. If you download it fresh from GitLab, you will likely have to make some code adjustments for it to run. See the bottom of this README for a list of the adjustments I made. If you are going to make these changes, make them BEFORE you make the virtual environment. If you don't, changes made in files other than run_cnn.py won't affect the virtual environment.
 
 Below are Collin's intructions for creating a virtual environment, with an addition of the correct version of Python. You must use Python 3.8 (or a similar version). Newer versions of a few of the packages changed some of the file types used, rendering the code unusable for newer versions of Python. If you download Python 3.8 and run the code below, you should still be able to use a higher version of Python for everything else, but use Python 3.8 in a virtual environment for the machine learning.
 
@@ -278,4 +278,22 @@ python3 run_cnn.py --predict --latest --corrected
 
 # Adjustments to the Machine Learning Code
 
-First off, you need to run it in Python Version 3.8. I was using Python 3.12 and nothing would work. There is a brief explanation for how to set up Python 3.8 for a virtual environment found in the part of the `README` that explains setting up a virtual environment. It explains how to use Python 3.8 for only the virtual environment so you can still use higher versions elsewhere. 
+* First off, you need to run it in Python Version 3.8. I was using Python 3.12 and nothing would work. There is a brief explanation for how to set up Python 3.8 for a virtual environment found in the part of the `README` that explains setting up a virtual environment. It explains how to use Python 3.8 for only the virtual environment so you can still use higher versions elsewhere. 
+
+* I changed lines 107 and 116 in `neural/neural/common/electro_cnn.py`; below are the two original lines, and below that are the two updated lines. These changes are necessary to make sure that the .keras package can make sure that the files are the correct type. Make sure you adjust these before you make a virtual environment, otherwise the virtual environment will not update, and you will have to make a new one. 
+
+Old Code:
+```python
+self.best_model_file = self.results_path / f"best_model.hdf5" # line 107
+
+self.best_model_file, # line 116
+```
+
+New Code:
+```python
+self.best_model_file = str(self.results_path / f"best_model.hdf5") # line 107
+
+str(self.best_model_file), # line 116
+```
+
+* Once I got the machine learning program running, I wanted to train it using data other than the default data. To change this, I had to change lines 21  and 35 of `run_cnn.py`. I changed `DATA_PATH` and `spectra_file` to be the full path of the file containing the data, which meant I also had to change line 21 in `neural/neural/ionic/utils.py`. `DATA_PATH` in `neural/neural/ionic/utils.py` also needs to be the full path to the data file, so I changed it to be the entire path name as well.
