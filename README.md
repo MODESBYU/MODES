@@ -61,10 +61,10 @@ source neural-venv/bin/activate     # Mac-OS: again, neural-venv is your virtual
 source neural-venv/Scripts/activate # Windows: again, neural-venv is your virtual environment
 
 # Always good practice to keep pip up to date.
-python3 -m pip install --upgrade pip
+python -m pip install --upgrade pip
 
 # Install the required python libraries specified in the setup.py.
-python3 -m pip install .
+python -m pip install .
 ```
 
 # Using the Machine Learning
@@ -115,14 +115,14 @@ Once you are in the desired directory, run the `run_cnn.py` script with the
 `--help` command to learn more about the available arguments and what they do.
 
 ```bash
-python3 run_cnn.py --help  # Print Off Command Line Arguments to Configure Clustering
+python run_cnn.py --help  # Print Off Command Line Arguments to Configure Clustering
 ```
 
 The `help` command should log some output to the console looking like what is
 below.
 
 ```bash
-~ python3 run_cnn.py --help
+~ python run_cnn.py --help
 usage: Run CNN on Given Spectra and Concentration Data [-h] [-i {lithium,tegdme}]
                                                        [--restrict {None,7,10,15,20,30,50,100,250,500,750,1000}] [-f] [--molarity]
                                                        [--wavenumber] [--min MIN] [--max MAX] [-t] [-m {interpolated,measured}]
@@ -188,7 +188,7 @@ To run training on the full training dataset and the default configuration (30%
 EC, 70% EMC), simply run the following command.
 
 ```bash
-python3 run_cnn.py --train
+python run_cnn.py --train
 ```
 
 ### EC-EMC Split Training
@@ -203,7 +203,7 @@ Please make sure you follow the file naming convention outlined there to ensure
 everything works correctly.
 
 ```bash
-python3 run_cnn.py --train --split 5050
+python run_cnn.py --train --split 5050
 ```
 
 ### Focused Dataset Training
@@ -222,10 +222,10 @@ from file and won't need to be recreated from scratch.
 
 ```bash
 # Focus the dataset and training on molarities between 0.75 and 2.75.
-python3 run_cnn.py --train --focus --molarity --min 0.75 --max 2.75
+python run_cnn.py --train --focus --molarity --min 0.75 --max 2.75
 
 # Focus the dataset and training on wavenumbers between 1000 and 2000.
-python3 run_cnn.py --train --focus --wavenumber --min 1000 --max 2000
+python run_cnn.py --train --focus --wavenumber --min 1000 --max 2000
 ```
 
 ## Model Prediction
@@ -244,7 +244,7 @@ To generate predictions using the trained model on all original battery datasets
 simply run the following command.
 
 ```bash
-python3 run_cnn.py --predict --latest
+python run_cnn.py --predict --latest
 ```
 
 ### Prediction on a Specific Rate
@@ -254,7 +254,7 @@ argument, as shown below. This will only generate predictions for the specified
 battery rate instead of all of the battery rates.
 
 ```bash
-python3 run_cnn.py --predict --latest --battery 2.33
+python run_cnn.py --predict --latest --battery 2.33
 ```
 
 ### Prediction with a Different Model
@@ -264,7 +264,7 @@ on the battery data, you must specify the path to the results folder. An example
 of this command is below.
 
 ```bash
-python3 run_cnn.py --predict --results-path path/to/the/results/you/want/to/use
+python run_cnn.py --predict --results-path path/to/the/results/you/want/to/use
 ```
 
 ### Prediction on Corrected Data
@@ -273,7 +273,7 @@ To generate predictions on the battery data corrected for baseline shifting,
 simply add the `--corrected` argument, as shown below.
 
 ```bash
-python3 run_cnn.py --predict --latest --corrected
+python run_cnn.py --predict --latest --corrected
 ```
 
 # Adjustments to the Machine Learning Code
