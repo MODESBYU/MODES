@@ -296,4 +296,9 @@ self.best_model_file = str(self.results_path / f"best_model.hdf5") # line 107
 str(self.best_model_file), # line 116
 ```
 
-* Once I got the machine learning program running, I wanted to train it using data other than the default data. To change this, I had to change lines 21  and 35 of `run_cnn.py`. I changed `DATA_PATH` and `spectra_file` to be the full path of the file containing the data, which meant I also had to change line 21 in `neural/neural/ionic/utils.py`. `DATA_PATH` in `neural/neural/ionic/utils.py` also needs to be the full path to the data file, so I changed it to be the entire path name as well.
+* Once I got the machine learning program running, I wanted to train it using data other than the default data. To change this, I had to change lines 21  and 35 of `run_cnn.py`. I changed `DATA_PATH` and `spectra_file` to be the full path of the file containing the data, which meant I also had to change a line or two in `neural/neural/ionic/utils.py`. In this file, I needed to change the lines shown below in whatever method I was using (i.e. `ratio`,`preprocess_data`,etc.). An example is shown below. `DATA_PATH` in `neural/neural/ionic/utils.py` also needs to be the full path to the data file, so I changed it to be the entire path name as well.
+
+```python
+dataset = pd.read_csv(f"{DATA_PATH}/{spectra_file}") # this is the old version
+dataset = pd.read_csv(r"path_to_your_file_here") # this is the new version
+```
