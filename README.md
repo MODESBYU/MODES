@@ -86,8 +86,8 @@ to do this.
 Having completed the commands above, you can now move on to running the code in
 the repository.
 
-# Edits to Machine Learning Code:
-Overall, there shouldn't be many of these. When you want to train the machine learning algorithm on a dataset other than the default one, you will need to edit the `path` variable on line 22. Include the full path, all the way up to the part with `C:\Users\etc.`. If you don't include the whole path, it won't work. 
+# Training Using Different Data Sets:
+If you want to use a different data set (other than the default data) to train/run the machine learning algorithm, you will need to change a couple of variable names. See the section on adjustments to the machine learning code at the end of this README for instructions on what to change.
 
 # Code Execution (from Collin)
 
