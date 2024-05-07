@@ -2,23 +2,6 @@
 
 A repository for transferring data and sharing code/information with one another. Focused around the testing, modelling, and charactization of lithium ion batteries.
 
-# Training for the RaptIR 
-
-Software Training
-https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fourier-transform-infrared-spectroscopy/software.html
-
-TQ Analyst Training
-https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fourier-transform-infrared-spectroscopy/software/tq-analyst-pro-software-training.html
-
-FTIR Training
-https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fourier-transform-infrared-spectroscopy/resources/ftir-spectroscopy-academy.html
-
-OMNIC Training
-https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fourier-transform-infrared-spectroscopy/software/omnic-software-training.html
-
-Paradigm Training
-https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fourier-transform-infrared-spectroscopy/software/omnic-paradigm-software-training.html
-
 # Definitions
 
 Repository: 
@@ -62,6 +45,8 @@ Alternatively, for either pulling or pushing, you can double click the files lab
 
 # Setting up the Machine Learning
 
+### Note: I made some adjustments on the Lab computer in an effort to get the machine learning algorithm to run. If you download it fresh from GitLab, you will likely have to make some code adjustments for it to run. See the bottom of this README for a list of the adjustments I made.
+
 Below are Collin's intructions for creating a virtual environment, with an addition of the correct version of Python. You must use Python 3.8 (or a similar version). Newer versions of a few of the packages changed some of the file types used, rendering the code unusable for newer versions of Python. If you download Python 3.8 and run the code below, you should still be able to use a higher version of Python for everything else, but use Python 3.8 in a virtual environment for the machine learning.
 
 ```bash
@@ -100,6 +85,9 @@ to do this.
 
 Having completed the commands above, you can now move on to running the code in
 the repository.
+
+# Edits to Machine Learning Code:
+Overall, there shouldn't be many of these. When you want to train the machine learning algorithm on a dataset other than the default one, you will need to edit the `path` variable on line 22. Include the full path, all the way up to the part with `C:\Users\etc.`. If you don't include the whole path, it won't work. 
 
 # Code Execution (from Collin)
 
@@ -287,3 +275,7 @@ simply add the `--corrected` argument, as shown below.
 ```bash
 python3 run_cnn.py --predict --latest --corrected
 ```
+
+# Adjustments to the Machine Learning Code
+
+First off, you need to run it in Python Version 3.8. I was using Python 3.12 and nothing would work. There is a brief explanation for how to set up Python 3.8 for a virtual environment found in the part of the `README` that explains setting up a virtual environment. It explains how to use Python 3.8 for only the virtual environment so you can still use higher versions elsewhere. 
