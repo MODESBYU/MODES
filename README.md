@@ -21,7 +21,7 @@ https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotop
 
 # Definitions
 
-Repository
+Repository: 
       a folder that connects to Github and can therefore update and change with the online version
 
 # Repository Set Up
@@ -62,7 +62,7 @@ Alternatively, for either pulling or pushing, you can double click the files lab
 
 # Setting up the Machine Learning
 
-Below are Collin's intructions for creating a virtual environment, with an addition of the correct version of python.
+Below are Collin's intructions for creating a virtual environment, with an addition of the correct version of Python. You must use Python 3.8 (or a similar version). Newer versions of a few of the packages changed some of the file types used, rendering the code unusable for newer versions of Python. If you download Python 3.8 and run the code below, you should still be able to use a higher version of Python for everything else, but use Python 3.8 in a virtual environment for the machine learning.
 
 ```bash
 # Change directory to the repsository (if not already there).
@@ -84,7 +84,7 @@ python3 -m pip install .
 
 # Using the Machine Learning
 
-Every time you want to use the machine learning, you will need to make sure the virtual environment is activated. To do so, run the following command once you have navigated to the repository. Be sure to note that `neural-venv` is just the name of the virtual environment you created.
+Every time you want to use the machine learning, you will need to make sure the virtual environment is activated. To do so, run the following command once you have navigated to the repository. Be sure to note that `neural-venv` is just the name of the virtual environment you created and can be changed to match your virtual environment.
 
 ```bash
 source neural-venv/bin/activate     # Mac-OS
@@ -101,7 +101,7 @@ to do this.
 Having completed the commands above, you can now move on to running the code in
 the repository.
 
-# Code Execution
+# Code Execution (from Collin)
 
 At this point, life is easy. You have everything set up and can now run the
 respective code in your `Terminal`. This repository contains two model training
