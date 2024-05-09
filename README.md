@@ -302,3 +302,16 @@ str(self.best_model_file), # line 116
 dataset = pd.read_csv(f"{DATA_PATH}/{spectra_file}") # this is the old version
 dataset = pd.read_csv(r"path_to_your_file_here") # this is the new version
 ```
+
+
+# Common Problems 
+
+### Can't activate Virtual Enviroment(Windows PowerShell) 
+
+If you can't activate the virtual enviroment because running scripts is disabled on your system you can change that setting by running this on your PowerShell prompt: 
+
+```cmd
+Set-ExecutionPolicy Unrestricted -Scope Process
+
+```
+After you accept the Execution Policy Change you can continue and active your virtual enviroment (see Setting Up the Machine Learning Model). 
