@@ -315,3 +315,20 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 ```
 After you accept the Execution Policy Change you can continue and active your virtual enviroment (see Setting Up the Machine Learning Model). 
+
+If the error says 
+```
+source : The term 'source' is not recognized as the name of a cmdlet, function, script file, or operable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ source neural-venv/Scripts/activate
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (source:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+```
+Delete the word source to activate the enviroment. 
+
+```
+neural-venv/Scripts/activate
+```
+
