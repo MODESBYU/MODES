@@ -331,4 +331,7 @@ Delete the word source to activate the enviroment.
 ```
 neural-venv/Scripts/activate
 ```
-
+Now you will see the active enviroment before the path in the command/WindowsPowerShell window. For example: 
+```
+(neural-venv) PS C:\Users\...
+```
