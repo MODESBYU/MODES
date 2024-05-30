@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from spectrum_class import Spectrum
 from typing import Dict
 from spectrochempy import NDDataset
-import csv
 
 
 class Molarity:
@@ -116,38 +115,3 @@ class Molarity:
         returns an array of all spectra in the Molarity object
         """
         return self.spectra
-    
-    def to_csv(self,name = None):
-        # ----- Exporting the data to a .csv file
-        # getting the x data
-        wavenumbers = self.spectrum.get_x()
-
-        name = np.array([])
-        name = np.append(name,wavenumbers)
-
-        titles = np.array(['Wavenumber (cm^-1)'])
-
-        # getting the y data
-        for i in range(len(self.spectrum.get_x())):
-        # load the data
-            working_object = self.spectrum.get_x()[i]
-            working_array = working_object.get_all()
-            M = working_object.get_M()
-
-            # nested for loop, to parse through the Spectrum objects
-            for j in range(len(working_array)):
-                working_spectrum = working_array[j]
-                working_absorbance = working_spectrum.get_y()
-
-                # append to the array
-                aiml = np.vstack((aiml,working_absorbance))
-                titles = np.append(titles,str(M + .0000000001 * j) + 'M')
-
-        # transpose
-        name = name.T
-
-
-        # create pandas dataframe for easy exporting
-        name_pd = pd.DataFrame(name,columns = titles)
-        name_pd.set_index('Wavenumber (cm^-1)', inplace=True)
-        return name_pd        
