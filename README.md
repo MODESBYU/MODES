@@ -302,7 +302,8 @@ str(self.best_model_file), # line 116
 dataset = pd.read_csv(f"{DATA_PATH}/{spectra_file}") # this is the old version
 dataset = pd.read_csv(r"path_to_your_file_here") # this is the new version
 ```
-
+* Predictions Adjustments
+* Place the spectra CSV file in the Machining_Learning/battery/data folder. Title the file gitt_1.10c.csv. In the command prompt, type `python run_cnn.py --predict --latest --battery 1.10`.
 
 # Common Problems 
 
