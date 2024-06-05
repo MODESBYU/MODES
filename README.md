@@ -45,13 +45,15 @@ Alternatively, for either pulling or pushing, you can double click the files lab
 
 # Setting up the Machine Learning
 
+Begin by opening a GitBash command prompt. This is where you will run the neural network and execute the following lines of code.
+
 ### Note: I made some adjustments on the Lab computer in an effort to get the machine learning algorithm to run. If you download it fresh from GitLab, you will likely have to make some code adjustments for it to run. See the bottom of this README for a list of the adjustments I made. If you are going to make these changes, make them BEFORE you make the virtual environment. If you don't, changes made in files other than run_cnn.py won't affect the virtual environment.
 
-Below are Collin's intructions for creating a virtual environment, with an addition of the correct version of Python. You must use Python 3.8 (or a similar version). Newer versions of a few of the packages changed some of the file types used, rendering the code unusable for newer versions of Python. If you download Python 3.8 and run the code below, you should still be able to use a higher version of Python for everything else, but use Python 3.8 in a virtual environment for the machine learning.
+Below are Collin's instructions for creating a virtual environment, with the addition of the correct version of Python. You must use Python 3.8 (or a similar version). Newer versions of a few of the packages changed some of the file types used, rendering the code unusable for newer versions of Python. If you download Python 3.8 and run the code below, you should still be able to use a higher version of Python for everything else, but use Python 3.8 in a virtual environment for the machine learning.
 
 ```bash
 # Change directory to the repsository (if not already there).
-cd neural
+cd Desktop/Machine_Learning/neural
 
 # Create a new virtual python environment.
 python3.8 -m venv neural-venv       # neural-venv can be replaced with whatever you want your virtual environment to be called
@@ -101,6 +103,12 @@ pipelines for the battery data:
 2. `neural/system` - This is the multi-component model training pipeline. This
    pipeline is dedicated towards training, predicting, and plotting the mole
    fractions of EC, EMC, and LiPF6 in the datasets.
+
+```bash
+# Run one of the following codes to enter the pipeline of your choice
+cd neural/ionic
+cd neural/system
+```
 
 Both the `ionic` and `system` folders contain a `run_cnn.py` script which will
 be the primary interaction point for training and prediction. Both scripts
