@@ -264,6 +264,13 @@ battery rate instead of all of the battery rates.
 ```bash
 python run_cnn.py --predict --latest --battery 2.33
 ```
+### Prediction for BYU MODES Lab Users
+
+* Rename the spectra CSV file to `gitt_1.10c.csv` and upload it to the folder `Desktop/Machine_Learning/data/battery`.
+* Create a voltage CSV file and rename to `gitt_1.10c_voltage.csv` and upload it to the folder `Desktop/Machine_Learning/data/battery`.
+* Create a time CSV file with a single column of the time each spectrum was collected at and name it as `gitt_1.10c_time.csv` and upload it to the folder `Desktop/Machine_Learing/data/battery`.
+* Ensure that there is a file called `gitt_1.10c_corrected.txt` in `Desktop/Machine_Learning/data/predictions` and that it has the same number of rows as the number of spectra in `gitt_1.10c.csv` (also the same as the rows in the time file).
+* In the terminal, execute the command `python run_cnn.py --predict --latest --battery 1.10`.
 
 ### Prediction with a Different Model
 
