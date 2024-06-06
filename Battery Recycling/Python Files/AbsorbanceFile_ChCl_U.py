@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Kevan Williams
-5/23/2024
 Absorbance Calculation - Plot
 Background - dark measurement - adjusts for inconsistency in the detector
 Baseline - empty cell, or cell with pure solution
@@ -13,10 +11,10 @@ import matplotlib.pyplot as plt
 import os
 
 path = os.path.dirname(os.getcwd())
-path = path + "/6.6.2024 Testing/SDS test/"
+path = path + "/6.6.2024 Testing/ChCl_Urea test/"
 
-background = path + "dark_MAYP1115451__1__10-25-52-102.txt"
-baseline = path + "background_MAYP1115451__2__10-36-25-886.txt"
+background = path + "dark.txt"
+baseline = path + "background.txt"
 measurement = path + "ChCl_U_MAYP1115451__5__10-46-53-397.txt"
 
 def absorbance(background, baseline, measurement, rows=14):
