@@ -190,6 +190,9 @@ Finally, the actual results for the current training run are stored in a folder
 named from the timestamp of the initial execution of the `run_cnn.py` script.
 The folder name follows the format `MMDDYYYY-T-HHMMSS`.
 
+# Training for BYU MODES Lab Users
+* Ensure that training files are placed in `Desktop/Machine_Learning/data/lithium/measured` or `Desktop/Machine_Learning/data/lithium/interpolated`.
+
 ### Default Training
 
 To run training on the full training dataset and the default configuration (30%
@@ -317,8 +320,6 @@ str(self.best_model_file), # line 116
 dataset = pd.read_csv(f"{DATA_PATH}/{spectra_file}") # this is the old version
 dataset = pd.read_csv(r"path_to_your_file_here") # this is the new version
 ```
-* Predictions Adjustments
-* Place the spectra CSV file in the Machining_Learning/battery/data folder. Title the file gitt_1.10c.csv. In the command prompt, type `python run_cnn.py --predict --latest --battery 1.10`.
 
 # Common Problems 
 
