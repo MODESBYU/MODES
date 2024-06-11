@@ -58,15 +58,16 @@ def absorbance(background, baseline, file, rows = 14):
 
 
 
-   
 
 measurewave, data = absorbances(background, baseline ,directory, 14)
 newdata = absorbance(background, baseline, testdata, 14)
+noise = np.std(background)  
 
-j = sp.find_peaks(data[0,:],width = 15, height = .01)
+
+j = sp.find_peaks(data[0,:],width = 10, height = .01)
 
 def prediction(measurewave, concentrations, data, peakwidths, peakheights, newdata):
-    peakdata = sp.find_peaks(data[0,:],width = peakwidths, height = peakheights)
+    peakdata = sp.find_peaks(data[-1,:],width = peakwidths, height = peakheights)
     
     peaks = peakdata[0]
     
@@ -80,7 +81,7 @@ def prediction(measurewave, concentrations, data, peakwidths, peakheights, newda
         conc_pred = np.append(conc_pred, (newdata[peaks[i]] - B)/A)
     return conc_pred
         
-final_predictions = prediction(measurewave, concentration, data, 15, .01, newdata)
+final_predictions = prediction(measurewave, concentration, data, 10, 0.01, newdata)
         
         
         
