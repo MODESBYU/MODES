@@ -29,6 +29,7 @@ def absorbance(background, baseline, measurement, rows=14):
     plt.grid()
     plt.xlabel("Wavelength")
     plt.ylabel("Absorbance")
+    plt.figtext(.05,-.05, "Absorbance spectra of ChCl:U 1:2")
     
 def transmission(background, baseline, measurement, rows):
     backwave, backval = np.loadtxt(background, unpack = True, skiprows = rows)
@@ -46,3 +47,4 @@ def transmission(background, baseline, measurement, rows):
     plt.show
 
 absorbance(background, baseline, measurement, rows = 14)
+
